@@ -1,0 +1,11 @@
+.
+├── dxapp.json
+├── README.md
+├── resources
+│   └── home
+│       └── dnanexus
+│           └── tree.txt
+└── src
+    └── code.sh
+
+4 directories, 4 files
