@@ -15,7 +15,7 @@
       "label": "Input GVCF files from GATKv4.0.9.0",
       "help": "Input GVCF files from GATKv4.0.9.0",
       "class": "array:file",
-      "patterns": ["*.gvcf"],
+      "patterns": ["*.g.vcf"],
       "optional": false
     },
     {
@@ -23,7 +23,7 @@
       "label": "Input GVCF index file from GATKv4.0.9.0",
       "help": "Input GVCF index file from GATKv4.0.9.0",
       "class": "array:file",
-      "patterns": ["*.tbi"],
+      "patterns": ["*.g.vcf.idx"],
       "optional": false
     },
     {
