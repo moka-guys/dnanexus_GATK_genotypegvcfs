@@ -20,7 +20,7 @@ dx-download-all-inputs
 # Move reference genome inputs to the same directory
 mv ${reference_fasta_index_path} ${reference_fasta_dict_path} $(dirname $reference_fasta_path)
 # Move VCF files and their indexes to the home directory
-mv ${input_gvcf_path[@]} ${input_gvcf_index_path} $HOME
+mv ${input_gvcfs_path[@]} ${input_gvcfs_index_path} $HOME
 
 # Set helper variables for docker container
 docker_reference_fasta_path=$(docker_path $reference_fasta_path)
