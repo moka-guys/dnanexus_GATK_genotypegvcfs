@@ -1,0 +1,97 @@
+{
+  "name": "GATK_GenotypeGVCFs_v1.0",
+  "title": "GATK_GenotypeGVCFs_v1.0",
+  "summary": "-",
+  "tags": [
+    "VariantCalling"
+  ],
+  "dxapi": "1.0.0",
+  "properties": {
+    "github release": "v1.0"
+  },
+  "inputSpec": [
+    {
+      "name": "input_gvcfs",
+      "label": "Input GVCF files from GATKv4.0.9.0",
+      "help": "Input GVCF files from GATKv4.0.9.0",
+      "class": "array:file",
+      "patterns": ["*.gvcf"],
+      "optional": false
+    },
+    {
+      "name": "input_gvcfs_index",
+      "label": "Input GVCF index file from GATKv4.0.9.0",
+      "help": "Input GVCF index file from GATKv4.0.9.0",
+      "class": "array:file",
+      "patterns": ["*.tbi"],
+      "optional": false
+    },
+    {
+      "name": "reference_fasta",
+      "label": "reference fasta",
+      "help": "A single fasta file containing reference Genome contigs BAMS were aligned to (see GATK reference bundles)",
+      "class": "file",
+      "optional": false
+    },
+    {
+      "name": "reference_fasta_index",
+      "label": "reference fasta index",
+      "help": "Fasta index file for the reference genome input BAMs were aligned to (see GATK reference bundles)",
+      "class": "file",
+      "optional": false
+    },
+    {
+      "name": "reference_fasta_dict",
+      "label": "reference fasta dict",
+      "help": "Dict file for the reference genome input BAMs were aligned to (see GATK reference bundles)",
+      "class": "file",
+      "optional": false
+    },
+    {
+      "name": "intervals_list",
+      "label": "Intervals list",
+      "help": "File (*.bed, *.list) containing genomic intervals for Haplotype Caller",
+      "class": "file",
+      "optional": false
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "combined_vcf",
+      "label": "GenotypeGVCFs output file",
+      "help": "GenotypeGVCFs output file. A (multisample) VCF produced by joint-calling.",
+      "class": "file",
+      "patterns": ["*.vcf"]
+    },
+    {
+      "name": "combined_vcf_index",
+      "label": "GenotypeGVCFs output file index",
+      "help": "GenotypeGVCFs output file index",
+      "class": "file",
+      "patterns": ["*.vcf.idx"]
+    }
+  ],
+  "runSpec": {
+    "file": "src/code.sh",
+    "release": "14.04",
+    "interpreter": "bash",
+    "distribution": "Ubuntu"
+  },
+  "access": {
+    "network": [
+      "*"
+    ]
+  },
+  "details": {
+    "GATK4 release": "v4.0.9.0"
+  },
+  "regionalOptions": {
+    "aws:us-east-1": {
+      "systemRequirements": {
+        "main": {
+          "instanceType": "mem1_ssd2_x4"
+        }
+      }
+    }
+  }
+}
