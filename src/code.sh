@@ -27,7 +27,8 @@ docker_reference_fasta_path=$(docker_path $reference_fasta_path)
 #docker_input_gvcf_path=$(docker_path $HOME)
 docker_intervals_list_path=$(docker_path $intervals_list_path)
 docker_output_prefix="RUNFOLDER.combined"
-docker_input_gvcfs=$(ls ${HOME}/*.g.vcf)
+input_gvcfs=$(ls ${HOME}/*.g.vcf)
+docker_input_gvcfs=$(docker_path ${input_gvcfs[@]})
 
 # Set number of cores available
 CORES=$(nproc)
