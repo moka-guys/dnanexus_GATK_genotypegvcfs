@@ -38,7 +38,7 @@ dx-docker pull broadinstitute/gatk:4.0.9.0
 
 # Call GenomicsDBImport
 dx-docker run -v /home/dnanexus/:${docker_dir} broadinstitute/gatk:4.0.9.0 gatk GenomicsDBImport \
-  --genomicsdb-workspace-path gendb://gendb -V ${docker_input_gvcfs} --L ${docker_intervals_list_path} \
+  --genomicsdb-workspace-path gendb -V ${docker_input_gvcfs[@]} --L ${docker_intervals_list_path} \
   --reader-threads ${CORES}
 
 # Call Genotype GVCF
