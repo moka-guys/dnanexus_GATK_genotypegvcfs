@@ -20,13 +20,14 @@ dx-download-all-inputs
 # Move reference genome inputs to the same directory
 mv ${reference_fasta_index_path} ${reference_fasta_dict_path} $(dirname $reference_fasta_path)
 # Move VCF files and their indexes to the home directory
-mv ${input_gvcfs_path[@]} ${input_gvcfs_index_path} $HOME
+mv ${input_gvcfs_path[@]} ${input_gvcfs_index_path[@]} $HOME
 
 # Set helper variables for docker container
 docker_reference_fasta_path=$(docker_path $reference_fasta_path)
-docker_input_gvcf_path=$(docker_path $HOME)
+#docker_input_gvcf_path=$(docker_path $HOME)
 docker_intervals_list_path=$(docker_path $intervals_list_path)
 docker_output_prefix="RUNFOLDER.combined"
+docker_input_gvcfs=$(ls ${HOME}/*.g.vcf)
 
 # Set number of cores available
 CORES=$(nproc)
@@ -36,7 +37,7 @@ dx-docker pull broadinstitute/gatk:4.0.9.0
 
 # Call GenomicsDBImport
 dx-docker run -v /home/dnanexus/:${docker_dir} broadinstitute/gatk:4.0.9.0 gatk GenomicsDBImport \
-  --genomicsdb-workspace-path gendb://gendb -V $(ls ${docker_input_gvcf_path}/*.g.vcf) --L ${docker_intervals_list_path} \
+  --genomicsdb-workspace-path gendb://gendb -V ${docker_input_gvcfs} --L ${docker_intervals_list_path} \
   --reader-threads ${CORES}
 
 # Call Genotype GVCF
