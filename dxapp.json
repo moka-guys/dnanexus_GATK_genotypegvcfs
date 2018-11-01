@@ -53,6 +53,14 @@
       "help": "File (*.bed, *.list) containing genomic intervals for Haplotype Caller",
       "class": "file",
       "optional": false
+    },
+    {
+      "name": "output_vcf_prefix",
+      "label": "Output VCF prefix",
+      "help": "Prefix for output VCF filename. Defaults to a merge of all input .g.vcfs",
+      "class": "string",
+      "optional": true,
+      "default": "merge"
     }
   ],
   "outputSpec": [
