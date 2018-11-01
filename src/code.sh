@@ -16,7 +16,7 @@ mv ${input_gvcfs_path[@]} ${input_gvcfs_index_path[@]} ${reference_fasta_path} \
 # Set command for GenomicsDBImport input GVCFs. Example:
 #     "-V sample1.g.vcf -V sample2.g.vcf -V sample3.g.vcf"
 for gvcf in $(ls *.g.vcf); do
-	docker_input_gvcfs="${docker_input_gvcfs} -V ${docker_dir}/${gvcf}"
+	docker_input_gvcfs="${docker_input_gvcfs} -V /gatk/sandbox/${gvcf}"
 done
 
 # Set number of cores available for multi-threading
