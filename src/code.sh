@@ -36,7 +36,7 @@ dx-docker run -v /home/dnanexus:/gatk/sandbox broadinstitute/gatk:4.0.9.0 gatk G
 
 # Call GenotypeGVCFs
 dx-docker run -v /home/dnanexus/:/gatk/sandbox broadinstitute/gatk:4.0.9.0 gatk GenotypeGVCFs \
-  -R /gatk/sandbox/${reference_fasta_name} -V gendb://sandbox/gendb -G StandardAnnotation -O /gatk/sanbox/${output_vcf_name}
+  -R /gatk/sandbox/${reference_fasta_name} -V gendb://sandbox/gendb -G StandardAnnotation -O /gatk/sandbox/${output_vcf_name}
 
 # Create output directories and move respective files for upload
 mkdir -p ${HOME}/out/combined_vcf && mv ${output_vcf_name} ${HOME}/out/combined_vcf
