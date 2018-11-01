@@ -31,11 +31,11 @@ fi
 
 # Call GenomicsDBImport
 dx-docker run -v /home/dnanexus:/gatk/sandbox broadinstitute/gatk:4.0.9.0 gatk GenomicsDBImport \
-  --genomicsdb-workspace-path /gatk/sandbox/gendb ${docker_input} --L /gatk/sandbox/${intervals_list_name} \
+  --genomicsdb-workspace-path /gatk/sandbox/gendb ${docker_input_gvcfs} --L /gatk/sandbox/${intervals_list_name} \
   --reader-threads ${CORES}
 
 # Call GenotypeGVCFs
-dx-docker run -v /home/dnanexus/:${docker_dir} broadinstitute/gatk:4.0.9.0 gatk GenotypeGVCFs \
+dx-docker run -v /home/dnanexus/:/gatk/sandbox broadinstitute/gatk:4.0.9.0 gatk GenotypeGVCFs \
   -R /gatk/sandbox/${reference_fasta_name} -V gendb://sandbox/gendb -G StandardAnnotation -O /gatk/sanbox/${output_vcf_name}
 
 # Create output directories and move respective files for upload
