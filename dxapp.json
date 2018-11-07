@@ -83,7 +83,12 @@
     "file": "src/code.sh",
     "release": "14.04",
     "interpreter": "bash",
-    "distribution": "Ubuntu"
+    "distribution": "Ubuntu",
+    "assetDepends": [
+      {
+        "id": "record-FPV32zj0jy1Qz76v41Z4V0J1"
+        }
+      ]
   },
   "access": {
     "network": [
