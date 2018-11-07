@@ -61,6 +61,20 @@
       "class": "string",
       "optional": true,
       "default": "merge"
+    },
+    {
+      "name": "extra_opts_genomicsdbimport",
+      "label": "Extra options GenomicsDBImport",
+      "help": "Additional options to pass to GATK GenomicsDBImport",
+      "class": "string",
+      "optional": true
+    },
+    {
+      "name": "extra_opts_genotypegvcfs",
+      "label": "Extra options GenotypeGVCFs",
+      "help": "Additional options to pass to GATK GenotypeGVCFs",
+      "class": "string",
+      "optional": true
     }
   ],
   "outputSpec": [

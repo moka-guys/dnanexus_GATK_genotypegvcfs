@@ -6,9 +6,6 @@ set -e -x -o pipefail
 # Download input data
 dx-download-all-inputs
 
-# Pull GATK docker to workstation
-dx-docker pull broadinstitute/gatk:4.0.9.0
-
 # Move all inputs to the home directory
 mv ${input_gvcfs_path[@]} ${input_gvcfs_index_path[@]} ${reference_fasta_path} \
   ${reference_fasta_index_path} ${reference_fasta_dict_path} ${intervals_list_path} ${HOME}
@@ -34,12 +31,12 @@ fi
 # Call GenomicsDBImport. This command creates a local database of the variants between input samples
 dx-docker run -v /home/dnanexus:/gatk/sandbox 68b475015074 gatk GenomicsDBImport \
   --genomicsdb-workspace-path /gatk/sandbox/gendb ${docker_input_gvcfs} --L /gatk/sandbox/${intervals_list_name} \
-  --reader-threads ${CORES}
+  --reader-threads ${CORES} ${extra_opts_genomicsdbimport}
 
 # Call GenotypeGVCFs. Performs joint-genotyping on all records in a database from GenomicsDBImport,
 # producing a combined multi-sample VCF.
 dx-docker run -v /home/dnanexus/:/gatk/sandbox 68b475015074 gatk GenotypeGVCFs \
-  -R /gatk/sandbox/${reference_fasta_name} -V gendb://sandbox/gendb -G StandardAnnotation -O /gatk/sandbox/${output_vcf_name}
+  -R /gatk/sandbox/${reference_fasta_name} -V gendb://sandbox/gendb -G StandardAnnotation -O /gatk/sandbox/${output_vcf_name} ${extra_opts_genotypegvcfs}
 
 # Create output directories and move output files for upload
 mkdir -p ${HOME}/out/combined_vcf && mv ${output_vcf_name} ${HOME}/out/combined_vcf
